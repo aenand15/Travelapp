@@ -255,7 +255,7 @@ function createPlayList(qry, rp,rp2, tk, usr){
                             beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer '+tk);},
                             contentType: 'application-json',
                             success: (response) =>{
-                                playList(plUri)
+                                playList(plUri, usr)
                             }, error: (response) =>{
                                 console.log(rp2[0]);
                             }
@@ -267,10 +267,10 @@ function createPlayList(qry, rp,rp2, tk, usr){
         }
     })
 }
-function playList(uri){
+function playList(uri, user){
     var url = uri.substring(39).replace(':','/');
     console.log(url);
-    var playBtn = $('<iframe id= "play" src="https://open.spotify.com/embed/playlist/'+url+'" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>');
+    var playBtn = $('<iframe id= "play" src="https://open.spotify.com/embed/user/'+user+'playlist/'+url+'" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>');
     var play_goes_here = $('#playgoeshere');
     playBtn.appendTo(play_goes_here);
     $('body').append(playBtn)
