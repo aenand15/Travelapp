@@ -167,10 +167,6 @@ function startsc(cityname){
 
                 window.location.hash = '';
                 // Set token
-                window.localStorage.setItem('token', hash.access_token)
-                alert(window.localStorage.getItem('token'))
-                }
-                let _token = window.localStorage.getItem('token')
                 let authEndpoint = 'https://accounts.spotify.com/authorize';
 
                 // Replace with your app's client ID, redirect URI and desired scopes
@@ -180,9 +176,12 @@ function startsc(cityname){
                 'playlist-modify-public user-read-private user-read-birthdate'];
 
                 // If there is no token, redirect to Spotify authorization
-                if (!_token) {
                 window.location = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=playlist-modify-public user-read-private user-read-birthdate&response_type=token&show_dialog=true`;
+                window.localStorage.setItem('token', hash.access_token)
+                alert(window.localStorage.getItem('token'))
                 }
+                let _token = window.localStorage.getItem('token')
+                
                 // Make a call using the token
                 
                 $.ajax({
