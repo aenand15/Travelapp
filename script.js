@@ -152,15 +152,10 @@ function createFlight(){
     })
 }
 
-function startsc(x){
-    var query = '';
-    var serp =[], serp2=[];
-    var user ='';
+function startsc(){
             //response.name is the airport name
             //console.log(response.name+' in: '+response.city);
-            query = x
             //console.log(query);
-        
                 const hash = window.location.hash.substring(1).split('&').reduce(function (initial, item) {
                     if (item) {
                         var parts = item.split('=');
@@ -187,42 +182,65 @@ function startsc(x){
                 //window.location = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=playlist-modify-public user-read-private user-read-birthdate&response_type=token&show_dialog=true`;
                 popup = window.open(`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=playlist-modify-public user-read-private user-read-birthdate&response_type=token&show_dialog=true`)
 }
+$.ajax({
+    url: "https://api.spotify.com/v1/search",
+    type: "GET",
+    beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + _token );},
+    dataType: 'json',
+    data:{
+        q: 'miami',
+        type: 'track',
+        market: 'US',
+        limit: 20
+    },
+    success: function(resdata) {
+        console.log(resdata)
+            }
+        // Do something with the returned data
+        //call play widget with item as parameter
+    });
                 // Make a call using the token
                 
-                $.ajax({
-                url: "https://api.spotify.com/v1/search",
-                type: "GET",
-                beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + _token );},
-                dataType: 'json',
-                data:{
-                    q: query,
-                    type: 'track',
-                    market: 'US',
-                    limit: 20
-                },
-                success: function(resdata) { 
-                        for(let i=0; i<resdata.tracks.items.length; i++){
-                            //item is a uri we can place into the spotify iframe widget
-                        let item = $('<li>'+resdata.tracks.items[i].uri.substring(8)+'</li>');
-                        item.appendTo($('#top-artists'));
-                        serp.push(resdata.tracks.items[i].uri.substring(8).replace(':','/'));
-                        serp2.push(resdata.tracks.items[i].uri);
-                        }
-                    // Do something with the returned data
-                    //call play widget with item as parameter
-                    $.ajax('https://api.spotify.com/v1/me',{
-                    type:'GET',
-                    dataType:'json',
-                    beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer '+_token);},
-                    success: (response) =>{
-                        user = response.id;
-                        //console.log(_token);
-                        createPlayList(query, serp,serp2, _token, user);
+}
+function searchSpotify(x){
+    var query = '';
+    var serp =[], serp2=[];
+    var user ='';
+    query = x;
+    $.ajax({
+        url: "https://api.spotify.com/v1/search",
+        type: "GET",
+        beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + _token );},
+        dataType: 'json',
+        data:{
+            q: query,
+            type: 'track',
+            market: 'US',
+            limit: 20
+        },
+        success: function(resdata) { 
+                for(let i=0; i<resdata.tracks.items.length; i++){
+                    //item is a uri we can place into the spotify iframe widget
+                let item = $('<li>'+resdata.tracks.items[i].uri.substring(8)+'</li>');
+                item.appendTo($('#top-artists'));
+                serp.push(resdata.tracks.items[i].uri.substring(8).replace(':','/'));
+                serp2.push(resdata.tracks.items[i].uri);
+                }
+            // Do something with the returned data
+            //call play widget with item as parameter
+            $.ajax('https://api.spotify.com/v1/me',{
+            type:'GET',
+            dataType:'json',
+            beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer '+_token);},
+            success: (response) =>{
+                user = response.id;
+                //console.log(_token);
+                createPlayList(query, serp,serp2, _token, user);
 
-                    }
-                })
-                },
-                });
+            }
+        })
+        },
+        });
 }
 var newRP;
 //create playlist function
