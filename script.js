@@ -98,8 +98,7 @@ function allAirports(){
             for(let i=0;i<response.length; i++){
                 airports.push('(airport_id:'+ response[i].id+')'+' '+response[i].name)
             }
-            //console.log(airports);
-            return airports;
+            console.log(airports);
         }, error: () =>{
             console.log('error');
         }
