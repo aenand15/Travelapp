@@ -2,6 +2,7 @@ $(document).ready(() =>{
     start()
     getAportIdsWrapper();
     startsc('Charlotte')
+    allAirports()
 });
 function sleep(milliseconds) {
     let start = new Date().getTime();
