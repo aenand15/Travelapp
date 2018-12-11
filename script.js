@@ -312,9 +312,9 @@ var buildFlightInterface = function(num){
     let container = $("<div class = container'></div>")
     container.append("<h1>Now Leaving " + dcity + " and Heading to "  + acity + "</h1>")
     let body = $('body')
-    body.empty()
+    body.empty
     body.append(container)
-    startsc(names[i-1])
+    //startsc(names[i-1])
 }
 
 var buildCreateInterface = function(){
