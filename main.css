@@ -77,3 +77,8 @@ img{
     float: right;
     padding-top: 10px;
 }
+.airports{
+    float: right;
+    height: 190px;
+    overflow-y: scroll;
+}

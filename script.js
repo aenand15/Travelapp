@@ -98,7 +98,6 @@ function allAirports(){
             for(let i=0;i<response.length; i++){
                 airports.push('(airport_id:'+ response[i].id+')'+' '+response[i].name)
             }
-            console.log(airports);
         }, error: () =>{
             console.log('error');
         }
@@ -317,7 +316,7 @@ var buildFlightInterface = function(l){
     }else{
     let acity = names[num]
     let dcity = names[num+4]
-    let container = $("<div class = container'></div>")
+    let container = $("<div class = 'container'></div>")
     container.append("<h1>Now Leaving " + dcity + " and Heading to "  + acity + "</h1>")
     let bar = $("<div class = 'slideshow'></div>")
     let numtodo = 4
@@ -342,9 +341,14 @@ var buildFlightInterface = function(l){
 
 var buildCreateInterface = function(){
     let body = $('body')
+    let l = $('<ul class = "airports"></ul>')
+    for (let i = 0; i < airports.length;i++){
+        l.append($('<li class = "airport">' + airports[i] + '</li>'))
+    }
+    container.append(l)
     let container = $('<div class = container><h1>Create a flight or go back to the terminal</h1></div>')
-    console.log(airports)
     container.append($('<form>Flight Number: <br><input type="text" id="flightNum" name="flightNum" placeholder="XX XXXX" required><br>Departure: <br><input type="text" id="departureTime" name="departureTime" placeholder="24 Hour" required><br>Arrival:<br><input type="text" id="arrivalTime" name="arrivalTime" placeholder="24 Hour" required><br>Depart from:<br><input type="text" id="dPort" name="dPort"><br>Arrive at:<br><input type="text" id="aPort" name="aPort"><br><br></form>'))
+    
     body.empty()
     body.append(container)
     //form to build flight then launches
