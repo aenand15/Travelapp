@@ -178,7 +178,7 @@ function startsc(x){
 
                 // Replace with your app's client ID, redirect URI and desired scopes
                 let clientId = '7bf8e705b8784dc093df8333cc8fea87';
-                let redirectUri = 'http://www.cs.unc.edu/Courses/comp426-f18/users/iankdew/FP/test.html';
+                let redirectUri = 'http://www.cs.unc.edu/Courses/comp426-f18/users/amitamit/fp/index.html';
                 let scopes = [
                 'playlist-modify-public user-read-private user-read-birthdate'];
 
@@ -293,7 +293,7 @@ var buildGateInterface = function(){
         let z = 'slide'+i
         let m = i -1
         let city = names[i-1]
-        let url = "https://source.unsplash.com/800x400/?" + city +"?sig=" + i
+        let url = "https://source.unsplash.com/800x300/?" + city +"?sig=" + i
         fetch(url).then(function(response) {
             bar.append("<div class = 'slide' id = " + z  + 
             "><img alt = 'testing' id = " + s + " src = " +response.url+
