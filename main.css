@@ -82,3 +82,7 @@ img{
     height: 190px;
     overflow-y: scroll;
 }
+form{
+    float: left;
+    display: inline-block;
+}
