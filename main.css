@@ -84,6 +84,7 @@ img{
 }
 .home{
     float: left;
+    display: inline-block;
 }
 form{
     float: left;
