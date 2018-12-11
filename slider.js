@@ -1,8 +1,7 @@
 $(document).ready(() =>{
-    start();
+    start()
     getAportIdsWrapper();
     startsc()
-
 });
 function sleep(milliseconds) {
     let start = new Date().getTime();

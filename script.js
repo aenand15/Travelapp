@@ -220,10 +220,6 @@ function startsc(){
                 })
                 },
                 });
-            }, error: () =>{
-                console.log('error');
-            }
-        });
 }
 var newRP;
 //create playlist function
