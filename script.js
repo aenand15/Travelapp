@@ -285,38 +285,44 @@ var buildGateInterface = function(){
     console.log(names)
     let container = $("<div class = 'container'></div>");
     container.append("<h1 id = 'headerTitle'>Welcome!</h1>")
-    container.append('<h2>Click where you want to go!<h2>')
+    container.append('<h2>Click where you want to go!</h2>')
     let bar = $("<div class = 'slideshow'></div>")
+    let leftPanel = $('<div class = leftPane></div>')
+    let l = leftPanel.append($('<ul></ul>'))
     let numtodo = 4
     for (i = 1; i <= numtodo; i++){
         let s = 'pic' + i
         let z = 'slide'+i
         let m = i -1
-        let city = names[i-1]
+        let city = names[m]
+        l.append($("<li class = 'noBullet'><button class = 'fly' id = " + m + ">Fly To: " + city + "</button></li>"))
         let url = "https://source.unsplash.com/800x300/?" + city +"?sig=" + i
         fetch(url).then(function(response) {
             bar.append("<div class = 'slide' id = " + z  + 
-            "><img alt = 'testing' id = " + s + " src = " +response.url+
-            " ><span>" + city + "</span><button class = 'fly' onclick = 'buildFlightInterface(" + m + ")'>Fly Here</button></div>")
+            "><h3>" + city + "</h3><img alt = 'testing' id = " + s + " src = " +response.url+
+            " >")
       });
     }
     container.append(bar)
     let body = $('body')
     body.empty()
+    body.append(leftPanel)
     body.append(container)
 }
-var buildFlightInterface = function(num){
-    console.log(num)
+
+var buildFlightInterface = function(l){
+    let num = parseInt(l)
     let acity = names[num]
     let dcity = names[num+4]
     let container = $("<div class = container'></div>")
     container.append("<h1>Now Leaving " + dcity + " and Heading to "  + acity + "</h1>")
     let body = $('body')
-    body.empty
+    body.empty()
     body.append(container)
-    //startsc(names[i-1])
+    startsc(acity)
 }
 
 var buildCreateInterface = function(){
     //form to build flight then launches
 }
+//changes need to be made such that names of places with buttons on left side

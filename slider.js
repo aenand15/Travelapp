@@ -25,3 +25,9 @@ function progressBar(){
         }
     }
 }
+
+$(function (){
+    $(document).on('click', '.fly', function(){
+        buildFlightInterface(event.target.id)
+    })
+})
