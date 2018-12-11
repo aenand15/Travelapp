@@ -153,9 +153,9 @@ function createFlight(){
 }
 
 function startsc(){
-            //response.name is the airport name
-            //console.log(response.name+' in: '+response.city);
-            //console.log(query);
+    var query = 'miami';
+    var serp =[], serp2=[];
+    var user ='';
                 const hash = window.location.hash.substring(1).split('&').reduce(function (initial, item) {
                     if (item) {
                         var parts = item.split('=');
@@ -173,74 +173,50 @@ function startsc(){
 
                 // Replace with your app's client ID, redirect URI and desired scopes
                 let clientId = '7bf8e705b8784dc093df8333cc8fea87';
-                let redirectUri = 'http://www.cs.unc.edu/Courses/comp426-f18/users/amitamit/fp/index.html';
+                let redirectUri = 'http://www.cs.unc.edu/Courses/comp426-f18/users/amitamit/FP/index.html';
                 let scopes = [
                 'playlist-modify-public user-read-private user-read-birthdate'];
 
                 // If there is no token, redirect to Spotify authorization
                 if (!_token) {
-                //window.location = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=playlist-modify-public user-read-private user-read-birthdate&response_type=token&show_dialog=true`;
-                popup = window.open(`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=playlist-modify-public user-read-private user-read-birthdate&response_type=token&show_dialog=true`)
-}
-$.ajax({
-    url: "https://api.spotify.com/v1/search",
-    type: "GET",
-    beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + _token );},
-    dataType: 'json',
-    data:{
-        q: 'miami',
-        type: 'track',
-        market: 'US',
-        limit: 20
-    },
-    success: function(resdata) {
-        console.log(resdata)
-            }
-        // Do something with the returned data
-        //call play widget with item as parameter
-    });
+                window.location = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=playlist-modify-public user-read-private user-read-birthdate&response_type=token&show_dialog=true`;
+                }
                 // Make a call using the token
                 
-}
-function searchSpotify(x){
-    var query = '';
-    var serp =[], serp2=[];
-    var user ='';
-    query = x;
-    $.ajax({
-        url: "https://api.spotify.com/v1/search",
-        type: "GET",
-        beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + _token );},
-        dataType: 'json',
-        data:{
-            q: query,
-            type: 'track',
-            market: 'US',
-            limit: 20
-        },
-        success: function(resdata) { 
-                for(let i=0; i<resdata.tracks.items.length; i++){
-                    //item is a uri we can place into the spotify iframe widget
-                let item = $('<li>'+resdata.tracks.items[i].uri.substring(8)+'</li>');
-                item.appendTo($('#top-artists'));
-                serp.push(resdata.tracks.items[i].uri.substring(8).replace(':','/'));
-                serp2.push(resdata.tracks.items[i].uri);
-                }
-            // Do something with the returned data
-            //call play widget with item as parameter
-            $.ajax('https://api.spotify.com/v1/me',{
-            type:'GET',
-            dataType:'json',
-            beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer '+_token);},
-            success: (response) =>{
-                user = response.id;
-                //console.log(_token);
-                createPlayList(query, serp,serp2, _token, user);
+                $.ajax({
+                url: "https://api.spotify.com/v1/search",
+                type: "GET",
+                beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + _token );},
+                dataType: 'json',
+                data:{
+                    q: query,
+                    type: 'track',
+                    market: 'US',
+                    limit: 20
+                },
+                success: function(resdata) { 
+                        for(let i=0; i<resdata.tracks.items.length; i++){
+                            //item is a uri we can place into the spotify iframe widget
+                        let item = $('<li>'+resdata.tracks.items[i].name+'</li>');
+                        item.appendTo($('#top-artists'));
+                        serp.push(resdata.tracks.items[i].uri.substring(8).replace(':','/'));
+                        serp2.push(resdata.tracks.items[i].uri);
+                        }
+                    // Do something with the returned data
+                    //call play widget with item as parameter
+                    $.ajax('https://api.spotify.com/v1/me',{
+                    type:'GET',
+                    dataType:'json',
+                    beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer '+_token);},
+                    success: (response) =>{
+                        user = response.id;
+                        //console.log(_token);
+                        createPlayList(query, serp,serp2, _token, user);
 
-            }
-        })
-        },
-        });
+                    }
+                })
+                },
+                });
 }
 var newRP;
 //create playlist function
@@ -251,8 +227,8 @@ function createPlayList(qry, rp,rp2, tk, usr){
      //console.log(tk);
     // console.log(usr);
     randoRP=[];
-    for(let i=0; i<10;i++){
-        let rng = Math.floor(Math.random() * 10)
+    for(let i=0; i<rp.length;i++){
+        let rng = Math.floor(Math.random() * 20)
         if(!randoRP.includes(rng)){
         randoRP.push(rng)
         } else {
@@ -271,9 +247,10 @@ function createPlayList(qry, rp,rp2, tk, usr){
                     var plID = response.id;
                     var plUri = response.uri;
                     for(let j=0;j<randoRP.length;j++){
-                        var newRP = rp[randoRP[j]]}
+                        var newRP = newRP+rp2[randoRP[j]]+','}
+                        console.log(newRP.substring(9))
                     
-                        $.ajax('https://api.spotify.com/v1/playlists/'+plID+'/tracks?uris='+rp2[0],{
+                        $.ajax('https://api.spotify.com/v1/playlists/'+plID+'/tracks?uris='+newRP.substring(9),{
                             type: 'POST',
                             dataType: 'json',
                             beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer '+tk);},
@@ -298,6 +275,7 @@ function playList(uri){
     var play_goes_here = $('#playgoeshere');
     playBtn.appendTo(play_goes_here);
 }
+
 //playList grabs the play widget and plays the newly created playlist.
 
 var buildGateInterface = function(){
