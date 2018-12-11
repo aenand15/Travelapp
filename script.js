@@ -153,7 +153,6 @@ function createFlight(){
 }
 
 function startsc(){
-    alert('started')
     var query = 'miami';
     var serp =[], serp2=[];
     var user ='';
