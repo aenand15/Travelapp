@@ -210,7 +210,7 @@ function startsc(){
                     beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer '+_token);},
                     success: (response) =>{
                         user = response.id;
-                        //console.log(_token);
+                        console.log(_token);
                     }
                 })
                 },
@@ -230,6 +230,7 @@ function choosePlaylist(query){
 
     // Set token
     var _token = hash.access_token;
+    console.log(_token)
     $.ajax({
         url: "https://api.spotify.com/v1/search",
         type: "GET",
