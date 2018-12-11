@@ -168,6 +168,7 @@ function startsc(cityname){
                 window.location.hash = '';
                 // Set token
                 window.localStorage.setItem('token', hash.access_token)
+                alert(window.localStorage.getItem('token'))
                 }
                 let _token = window.localStorage.getItem('token')
                 let authEndpoint = 'https://accounts.spotify.com/authorize';
