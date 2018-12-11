@@ -2,7 +2,7 @@ var root="http://comp426.cs.unc.edu:3001/",
 user="pacquito",
 pass="superiorte4l";
 var portIds='';
-var names = []
+var names = ['miami']
 
 function getAportIdsWrapper(){
     getFlights();
@@ -70,6 +70,7 @@ function getFlights(){
                 dports.push(response[rando[j]].departure_id)
             }
             portIds=dports[0] + " " + aports[0];
+            names.pop()
             getAirport(aports[0])
             getAirport(aports[1])
             getAirport(aports[2])
@@ -153,9 +154,11 @@ function createFlight(){
 }
 
 function startsc(){
-    var query = names[0];
+    var query = '';
     var serp =[], serp2=[];
     var user ='';
+    query = names[0]
+        
                 const hash = window.location.hash.substring(1).split('&').reduce(function (initial, item) {
                     if (item) {
                         var parts = item.split('=');
@@ -173,7 +176,7 @@ function startsc(){
 
                 // Replace with your app's client ID, redirect URI and desired scopes
                 let clientId = '7bf8e705b8784dc093df8333cc8fea87';
-                let redirectUri = 'http://www.cs.unc.edu/Courses/comp426-f18/users/amitamit/fp/index.html';
+                let redirectUri = 'http://www.cs.unc.edu/Courses/comp426-f18/users/iankdew/FP/test.html';
                 let scopes = [
                 'playlist-modify-public user-read-private user-read-birthdate'];
 
@@ -217,6 +220,10 @@ function startsc(){
                 })
                 },
                 });
+            }, error: () =>{
+                console.log('error');
+            }
+        });
 }
 var newRP;
 //create playlist function
@@ -280,7 +287,6 @@ function playList(uri){
 //playList grabs the play widget and plays the newly created playlist.
 
 var buildGateInterface = function(){
-    console.log(names)
     let container = $("<div class = 'container'></div>");
     container.append("<h1 id = 'headerTitle'>Welcome!</h1>")
     container.append('<h2>Click where you want to go!</h2>')
