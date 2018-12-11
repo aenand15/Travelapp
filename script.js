@@ -144,9 +144,8 @@ function createFlight(){
         },
         success: (response) =>{
             console.log('New flight created');
-            portIds = departFrom +' '+arriveAt;
-            console.log(portIds);
-            return portIds;
+            getAirport(arriveAt)
+            startNew()
         }
     })
 }
@@ -155,11 +154,8 @@ function startsc(cityname){
     var serp =[], serp2=[];
     var user ='';
     query = cityname
-    alert(window.localStorage.getItem('token'))
     if(window.localStorage.getItem('token')== null){
-        
-        alert('get new token')
-                // Set token
+                        // Set token
                 let authEndpoint = 'https://accounts.spotify.com/authorize';
 
                 // Replace with your app's client ID, redirect URI and desired scopes
@@ -180,7 +176,6 @@ function startsc(cityname){
 
                 window.location.hash = '';
                 window.localStorage.setItem('token', hash.access_token)
-                alert(window.localStorage.getItem('token'))
                 }
                 let _token = window.localStorage.getItem('token')
                 
@@ -358,3 +353,8 @@ var buildCreateInterface = function(){
     //form to build flight then launches
 }
 //changes need to be made such that names of places with buttons on left side
+var startNew = function(){
+    alert('Creating your flight!')
+    sleep(1000)
+    startsc(names.pop())
+}
