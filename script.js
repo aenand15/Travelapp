@@ -156,6 +156,8 @@ function startsc(){
     var serp =[], serp2=[];
     var user ='';
     query = 'miami'
+    alert(window.localStorage.getItem('token'))
+    if(window.localStorage.getItem('token')== null){
                 const hash = window.location.hash.substring(1).split('&').reduce(function (initial, item) {
                     if (item) {
                         var parts = item.split('=');
@@ -166,8 +168,9 @@ function startsc(){
 
                 window.location.hash = '';
                 // Set token
-                let _token = hash.access_token;
-                window.localStorage.setItem('token', _token)
+                window.localStorage.setItem('token', hash.access_token)
+                }
+                let _token = window.localStorage.getItem('token')
                 console.log(_token)
                 let authEndpoint = 'https://accounts.spotify.com/authorize';
 
