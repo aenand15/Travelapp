@@ -291,12 +291,13 @@ var buildGateInterface = function(){
     for (i = 1; i <= numtodo; i++){
         let s = 'pic' + i
         let z = 'slide'+i
+        let m = i -1
         let city = names[i-1]
         let url = "https://source.unsplash.com/800x400/?" + city +"?sig=" + i
         fetch(url).then(function(response) {
             bar.append("<div class = 'slide' id = " + z  + 
             "><img alt = 'testing' id = " + s + " src = " +response.url+
-            " ><span>" + city + "</span><button class = 'fly' onclick = 'buildFlightInterface(" + i + ")'>Fly Here</button></div>")
+            " ><span>" + city + "</span><button class = 'fly' onclick = 'buildFlightInterface(" + m + ")'>Fly Here</button></div>")
       });
     }
     container.append(bar)
@@ -304,15 +305,16 @@ var buildGateInterface = function(){
     body.empty()
     body.append(container)
 }
-var buildFlightInterface = function(i){
-    let acity = names[i-1]
-    let dcity = names[i+3]
+var buildFlightInterface = function(num){
+    console.log(num)
+    let acity = names[num]
+    let dcity = names[num+4]
     let container = $("<div class = container'></div>")
     container.append("<h1>Now Leaving " + dcity + " and Heading to "  + acity + "</h1>")
     let body = $('body')
     body.empty()
     body.append(container)
-    //startsc(names[i-1])
+    startsc(names[i-1])
 }
 
 var buildCreateInterface = function(){
