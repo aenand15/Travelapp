@@ -144,6 +144,7 @@ function createFlight(){
         },
         success: (response) =>{
             console.log('New flight created');
+            getAirport(departFrom)
             getAirport(arriveAt)
             startNew()
         }
@@ -311,9 +312,13 @@ var buildFlightInterface = function(l){
     let num = parseInt(l)
     if(num == 5){
         buildCreateInterface()
+    }else if (num == -1){
+        var acity = names[(names.length)-1]
+        var dcity = names[(names.length)-2]
     }else{
-    let acity = names[num]
-    let dcity = names[num+4]
+    var acity = names[num]
+    var dcity = names[num+4]
+    }
     let container = $("<div class = 'container'></div>")
     container.append("<h1>Now Leaving " + dcity + " and Heading to "  + acity + "</h1>")
     let bar = $("<div class = 'slideshow'></div>")
@@ -334,7 +339,7 @@ var buildFlightInterface = function(l){
     body.empty()
     body.append(container)
     startsc(acity)
-}
+
 }
 
 var buildCreateInterface = function(){
@@ -356,5 +361,6 @@ var buildCreateInterface = function(){
 var startNew = function(){
     alert('Creating your flight!')
     sleep(1000)
+    buildFlightInterface(-1)
     startsc(names.pop())
 }
