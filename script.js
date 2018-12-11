@@ -153,7 +153,7 @@ function createFlight(){
 }
 
 function startsc(){
-    var query = 'miami';
+    var query = names[0];
     var serp =[], serp2=[];
     var user ='';
                 const hash = window.location.hash.substring(1).split('&').reduce(function (initial, item) {
@@ -167,13 +167,13 @@ function startsc(){
                 window.location.hash = '';
 
                 // Set token
-                let _token = hash.access_token;
+                var _token = hash.access_token;
 
                 let authEndpoint = 'https://accounts.spotify.com/authorize';
 
                 // Replace with your app's client ID, redirect URI and desired scopes
-                let clientId = '7bf8e705b8784dc093df8333cc8fea87';
-                let redirectUri = 'http://www.cs.unc.edu/Courses/comp426-f18/users/amitamit/fp/index.html';
+                var clientId = '7bf8e705b8784dc093df8333cc8fea87';
+                var redirectUri = 'http://www.cs.unc.edu/Courses/comp426-f18/users/amitamit/fp/index.html';
                 let scopes = [
                 'playlist-modify-public user-read-private user-read-birthdate'];
 
@@ -211,17 +211,53 @@ function startsc(){
                     success: (response) =>{
                         user = response.id;
                         //console.log(_token);
-                        createPlayList(query, serp,serp2, _token, user);
-
                     }
                 })
                 },
                 });
 }
+
+function choosePlaylist(query){
+    $.ajax({
+        url: "https://api.spotify.com/v1/search",
+        type: "GET",
+        beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + _token );},
+        dataType: 'json',
+        data:{
+            q: query,
+            type: 'track',
+            market: 'US',
+            limit: 20
+        },
+        success: function(resdata) { 
+                for(let i=0; i<resdata.tracks.items.length; i++){
+                    //item is a uri we can place into the spotify iframe widget
+                let item = $('<li>'+resdata.tracks.items[i].name+'</li>');
+                item.appendTo($('#top-artists'));
+                serp.push(resdata.tracks.items[i].uri.substring(8).replace(':','/'));
+                serp2.push(resdata.tracks.items[i].uri);
+                }
+            // Do something with the returned data
+            //call play widget with item as parameter
+            $.ajax('https://api.spotify.com/v1/me',{
+            type:'GET',
+            dataType:'json',
+            beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer '+_token);},
+            success: (response) =>{
+                user = response.id;
+                //console.log(_token);
+                createPlayList(query, serp,serp2, _token, user);
+
+            }
+        })
+    }
+})
+}
+
 var newRP;
 //create playlist function
     //from the search results create a playlist. 
-function createPlayList(qry, rp,rp2, tk, usr){
+function createPlayList(qry, rp,rp2,tk, usr){
      console.log(qry);
     // console.log(rp);
      //console.log(tk);
@@ -273,6 +309,8 @@ function playList(uri){
     console.log(url);
     var playBtn = $('<iframe id= "play" src="https://open.spotify.com/embed/'+url+'" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>');
     var play_goes_here = $('#playgoeshere');
+    $('body').append(playBtn)
+    $('body').append(play_goes_here)
     playBtn.appendTo(play_goes_here);
 }
 
@@ -316,7 +354,7 @@ var buildFlightInterface = function(l){
     let body = $('body')
     body.empty()
     body.append(container)
-    startsc(acity)
+    choosePlaylist(acity)
 }
 
 var buildCreateInterface = function(){
