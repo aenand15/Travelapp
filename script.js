@@ -295,7 +295,7 @@ var buildGateInterface = function(){
         let m = i -1
         let city = names[m]
         l.append($("<li class = 'noBullet'><button class = 'fly' id = " + m + ">Fly To: " + city + "</button></li>"))
-        let url = "https://source.unsplash.com/800x300/?" + city +"?sig=" + i
+        let url = "https://source.unsplash.com/400x300/?" + city +"?sig=" + i
         fetch(url).then(function(response) {
             bar.append("<div class = 'slide' id = " + z  + 
             "><h3>" + city + "</h3><img alt = 'testing' id = " + s + " src = " +response.url+
