@@ -165,7 +165,6 @@ function startsc(){
                     }, {});
 
                 window.location.hash = '';
-                console.log(_token)
                 // Set token
                 let _token = hash.access_token;
                 console.log(_token)
