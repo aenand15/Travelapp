@@ -33,3 +33,14 @@ $(function (){
         buildFlightInterface(event.target.id)
     })
 })
+
+$('#refairports').on('keyup change', function () {
+    var search = $(this).val();
+    $('.listWrapper li').each(function () {
+        var val = $(this).text();
+        $(this).toggle( !! val.match(search)).html(
+            val.replace(search, function(match) {
+                    return '<mark>'+match+'</mark>'}, 'gi')
+        );
+    });
+});

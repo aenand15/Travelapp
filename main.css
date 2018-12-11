@@ -83,6 +83,5 @@ img{
     overflow-y: scroll;
 }
 form{
-    float: left;
     display: inline-block;
 }
