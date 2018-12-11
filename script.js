@@ -156,7 +156,8 @@ function startsc(cityname){
     var user ='';
     query = cityname
     alert(window.localStorage.getItem('token'))
-    if(window.localStorage.getItem('token')== null || window.localStorage.getItem('token') == undefined){
+    if(window.localStorage.getItem('token')== null){
+        alert('get new token')
                 const hash = window.location.hash.substring(1).split('&').reduce(function (initial, item) {
                     if (item) {
                         var parts = item.split('=');
