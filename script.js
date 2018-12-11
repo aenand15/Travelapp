@@ -312,7 +312,9 @@ var buildFlightInterface = function(l){
     let num = parseInt(l)
     if(num == 5){
         buildCreateInterface()
-    }else if (num == -1){
+    }else{
+
+    if (num == -1){
         var acity = names[(names.length)-1]
         var dcity = names[(names.length)-2]
     }else{
@@ -339,7 +341,7 @@ var buildFlightInterface = function(l){
     body.empty()
     body.append(container)
     startsc(acity)
-
+    }
 }
 
 var buildCreateInterface = function(){
