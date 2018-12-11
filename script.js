@@ -2,7 +2,7 @@ var root="http://comp426.cs.unc.edu:3001/",
 user="pacquito",
 pass="superiorte4l";
 var portIds='';
-var names = ['miami']
+var names = []
 
 function getAportIdsWrapper(){
     getFlights();
@@ -70,7 +70,6 @@ function getFlights(){
                 dports.push(response[rando[j]].departure_id)
             }
             portIds=dports[0] + " " + aports[0];
-            names.pop()
             getAirport(aports[0])
             getAirport(aports[1])
             getAirport(aports[2])
@@ -152,7 +151,6 @@ function createFlight(){
         }
     })
 }
-var _token;
 function startsc(){
     var query = '';
     var serp =[], serp2=[];
@@ -169,7 +167,7 @@ function startsc(){
                 window.location.hash = '';
                 console.log(_token)
                 // Set token
-                _token = hash.access_token;
+                let _token = hash.access_token;
                 console.log(_token)
                 let authEndpoint = 'https://accounts.spotify.com/authorize';
 
@@ -273,7 +271,7 @@ function createPlayList(qry, rp,rp2, tk, usr){
 function playList(uri){
     var url = uri.substring(39).replace(':','/');
     console.log(url);
-    var playBtn = $('<iframe id= "play" src="https://open.spotify.com/embed/'+url+'" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>');
+    var playBtn = $('<iframe id= "play" src="https://open.spotify.com/embed/playlist/'+url+'" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>');
     var play_goes_here = $('#playgoeshere');
     playBtn.appendTo(play_goes_here);
     $('body').append(playBtn)
