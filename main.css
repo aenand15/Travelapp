@@ -83,7 +83,7 @@ img{
     overflow-y: scroll;
 }
 .home{
-    margin-left: 0;
+    float: right;
     display: inline-block;
 }
 form{
