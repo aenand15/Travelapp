@@ -302,6 +302,8 @@ var buildGateInterface = function(){
             " >")
       });
     }
+    l.append($("<li class = 'noBullet'><button class = 'fly' id = " + 5 + ">Create your own flight!</button></li>"))
+    
     container.append(bar)
     let body = $('body')
     body.empty()
@@ -311,12 +313,15 @@ var buildGateInterface = function(){
 
 var buildFlightInterface = function(l){
     let num = parseInt(l)
+    if(num == 5){
+        buildCreateInterface()
+    }else{
     let acity = names[num]
     let dcity = names[num+4]
     let container = $("<div class = container'></div>")
     container.append("<h1>Now Leaving " + dcity + " and Heading to "  + acity + "</h1>")
     let bar = $("<div class = 'slideshow'></div>")
-  let numtodo = 4
+    let numtodo = 4
     for (i = 1; i <= numtodo; i++){
         let s = 'pic' + i
         let z = 'slide'+i
@@ -334,8 +339,15 @@ var buildFlightInterface = function(l){
     body.append(container)
     startsc(acity)
 }
+}
 
 var buildCreateInterface = function(){
+    let body = $('body')
+    let container = $('<div class = container><h1>Create a flight or go back to the terminal</h1></div>')
+    console.log(allAirports())
+    container.append($('<form>Flight Number: <br><input type="text" id="flightNum" name="flightNum" placeholder="XX XXXX" required><br>Departure: <br><input type="text" id="departureTime" name="departureTime" placeholder="24 Hour" required><br>Arrival:<br><input type="text" id="arrivalTime" name="arrivalTime" placeholder="24 Hour" required><br>Depart from:<br><input type="text" id="dPort" name="dPort"><br>Arrive at:<br><input type="text" id="aPort" name="aPort"><br><br></form>'))
+    body.empty()
+    body.append(container)
     //form to build flight then launches
 }
 //changes need to be made such that names of places with buttons on left side
