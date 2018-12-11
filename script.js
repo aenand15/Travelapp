@@ -184,8 +184,9 @@ function startsc(x){
 
                 // If there is no token, redirect to Spotify authorization
                 if (!_token) {
-                window.location = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=playlist-modify-public user-read-private user-read-birthdate&response_type=token&show_dialog=true`;
-                }
+                //window.location = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=playlist-modify-public user-read-private user-read-birthdate&response_type=token&show_dialog=true`;
+                popup = window.open(`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=playlist-modify-public user-read-private user-read-birthdate&response_type=token&show_dialog=true`)
+}
                 // Make a call using the token
                 
                 $.ajax({
