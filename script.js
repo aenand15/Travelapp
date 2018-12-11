@@ -347,7 +347,7 @@ var buildCreateInterface = function(){
     }
     let container = $('<div class = container><h1>Create a flight or go back to the terminal</h1></div>')
     container.append($('<form>Flight Number: <br><input type="text" id="flightNum" name="flightNum" placeholder="XX XXXX" required><br>Departure: <br><input type="text" id="departureTime" name="departureTime" placeholder="24 Hour" required><br>Arrival:<br><input type="text" id="arrivalTime" name="arrivalTime" placeholder="24 Hour" required><br>Depart from:<br><input type="text" id="dPort" name="dPort"><br>Arrive at:<br><input type="text" id="aPort" name="aPort"><br><br></form>'))
-    let x = $('<div class = "listWrapper"><input type="text" id="refairports"></div>')
+    let x = $('<div id = "listWrapper"><input type="text" id="refairports"></div>')
     x.append(l)
     container.append(x)
     body.empty()
