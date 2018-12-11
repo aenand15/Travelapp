@@ -157,6 +157,7 @@ function startsc(cityname){
     query = cityname
     alert(window.localStorage.getItem('token'))
     if(window.localStorage.getItem('token')== null){
+        alert('get new token')
                 // Set token
                 let authEndpoint = 'https://accounts.spotify.com/authorize';
 
