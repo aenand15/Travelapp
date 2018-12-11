@@ -337,6 +337,7 @@ var buildFlightInterface = function(l){
       });
     }
     container.append(bar)
+    container.append('<button class="home">Go back to terminal</button>')
     let body = $('body')
     body.empty()
     body.append(container)
@@ -355,6 +356,7 @@ var buildCreateInterface = function(){
     let x = $('<div id = "listWrapper"></div>')
     x.append(l)
     container.append(x)
+    container.append('<button class="home">Go back to terminal</button>')
     body.empty()
     body.append(container)
     //form to build flight then launches

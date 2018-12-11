@@ -33,3 +33,8 @@ $(function (){
         buildFlightInterface(event.target.id)
     })
 })
+$(function (){
+    $(document).on('click', '.home', function(){
+        buildGateInterface()
+    })
+})
