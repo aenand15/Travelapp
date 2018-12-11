@@ -1,0 +1,60 @@
+
+.slideshow .slide {
+    left: 50%; 
+    margin-left: -400px; 
+    width: 1px; /* Need a specific value to work */
+    position: absolute;
+    opacity: 0;
+}
+@keyframes cycle {
+    0% { opacity: 0; }
+    5% { opacity: 1; }
+    20% { opacity: 1; }
+    25% { opacity: 0; }
+}
+@-moz-keyframes cycle {
+    0% { opacity: 0; }
+    5% { opacity: 1; }
+    20% { opacity: 1; }
+    25% { opacity: 0; }
+}
+@-webkit-keyframes cycle {
+    0% { opacity: 0; }
+    5% { opacity: 1; }
+    20% { opacity: 1; }
+    25% { opacity: 0; }
+}
+#slide1 {
+    -webkit-animation: cycle 40s linear infinite;
+       -moz-animation: cycle 40s linear infinite;
+            animation: cycle 40s linear infinite;
+}
+#slide2 {
+    -webkit-animation: cycle 40s linear 10s infinite;
+       -moz-animation: cycle 40s linear 10s infinite;
+            animation: cycle 40s linear 10s infinite;
+}
+#slide3 {
+    -webkit-animation: cycle 40s linear 20s infinite;
+       -moz-animation: cycle 40s linear 20s infinite;
+            animation: cycle 40s linear 20s infinite;
+}
+#slide4 {
+    -webkit-animation: cycle 40s linear 30s infinite;
+       -moz-animation: cycle 40s linear 30s infinite;
+            animation: cycle 40s linear 30s infinite;
+}
+
+#progress {
+    width: 100%;
+    background-color: #ddd;
+  }
+#bar {
+    width: 19%;
+    height: 30px;
+    background-color: lightgreen;
+}
+  
+h1, h2{
+    text-align: center
+}
