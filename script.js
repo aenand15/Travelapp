@@ -276,7 +276,7 @@ function playList(uri, user){
     var playBtn = $('<iframe id= "play" src="https://open.spotify.com/embed/user/'+user+'/playlist/'+url[4]+'" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>');
     var play_goes_here = $('#playgoeshere');
     playBtn.appendTo(play_goes_here);
-    $('.container').append(playBtn)
+    $('body').append(playBtn)
 }
 
 //playList grabs the play widget and plays the newly created playlist.
