@@ -2,7 +2,7 @@ var root="http://comp426.cs.unc.edu:3001/",
 user="pacquito",
 pass="superiorte4l";
 var portIds='';
-var names = []
+var names = ['miami']
 
 function getAportIdsWrapper(){
     getFlights();
@@ -78,6 +78,7 @@ function getFlights(){
             getAirport(dports[1])
             getAirport(dports[2])
             getAirport(dports[3])
+            names.shift()
             return aports;
         }, error: ()  =>{
             console.log('error');
@@ -155,7 +156,7 @@ function startsc(){
     var query = '';
     var serp =[], serp2=[];
     var user ='';
-    query = 'miami'
+    query = names[0]
     alert(window.localStorage.getItem('token'))
     if(window.localStorage.getItem('token')== null){
                 const hash = window.location.hash.substring(1).split('&').reduce(function (initial, item) {
