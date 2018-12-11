@@ -160,8 +160,8 @@ function startsc(cityname){
                 let authEndpoint = 'https://accounts.spotify.com/authorize';
 
                 // Replace with your app's client ID, redirect URI and desired scopes
-                let clientId = '7bf8e705b8784dc093df8333cc8fea87';
-                let redirectUri = 'http://www.cs.unc.edu/Courses/comp426-f18/users/amitamit/fp/index.html';
+                let clientId = '';
+                let redirectUri = '';
                 let scopes = [
                 'playlist-modify-public user-read-private user-read-birthdate'];
 
