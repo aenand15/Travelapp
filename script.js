@@ -156,23 +156,7 @@ function startsc(){
     var serp =[], serp2=[];
     var user ='';
     query = 'miami'
-    if(window.localStorage.getItem('token') == null){
-                const hash = window.location.hash.substring(1).split('&').reduce(function (initial, item) {
-                    if (item) {
-                        var parts = item.split('=');
-                        initial[parts[0]] = decodeURIComponent(parts[1]);
-                    }
-                    return initial;
-                    }, {});
-
-                window.location.hash = '';
-                // Set token
-                var _token = hash.access_token;
-                window.localStorage.setItem('token', _token)
-                }else{
-                    var _token = window.localStorage.getItem('token')
-                }
-                console.log(_token)
+                var _token = window.localStorage.getItem('token')
                 let authEndpoint = 'https://accounts.spotify.com/authorize';
 
                 // Replace with your app's client ID, redirect URI and desired scopes
@@ -182,11 +166,25 @@ function startsc(){
                 'playlist-modify-public user-read-private user-read-birthdate'];
 
                 // If there is no token, redirect to Spotify authorization
-                if (!_token) {
+                if (_token == null) {
                 window.location = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=playlist-modify-public user-read-private user-read-birthdate&response_type=token&show_dialog=true`;
                 }
                 // Make a call using the token
-                
+                if(window.localStorage.getItem('token') == null){
+                    const hash = window.location.hash.substring(1).split('&').reduce(function (initial, item) {
+                        if (item) {
+                            var parts = item.split('=');
+                            initial[parts[0]] = decodeURIComponent(parts[1]);
+                        }
+                        return initial;
+                        }, {});
+    
+                    window.location.hash = '';
+                    // Set token
+                    var _token = hash.access_token;
+                    window.localStorage.setItem('token', _token)
+                    }
+                    console.log(_token)
                 $.ajax({
                 url: "https://api.spotify.com/v1/search",
                 type: "GET",
