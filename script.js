@@ -74,6 +74,10 @@ function getFlights(){
             getAirport(aports[1])
             getAirport(aports[2])
             getAirport(aports[3])
+            getAirport(dports[0])
+            getAirport(dports[1])
+            getAirport(dports[2])
+            getAirport(dports[3])
             return aports;
         }, error: ()  =>{
             console.log('error');
@@ -148,11 +152,11 @@ function createFlight(){
     })
 }
 
-function startsc(){
+function startsc(x){
     var query = '';
     var serp =[], serp2=[];
     var user ='';
-    $.ajax(root+'airports/'+portIds.substring(7),{
+    $.ajax(root+'airports/'+x,{
         type: 'GET',
         dataType: 'json',
         xhrFields: {withCredentials: true},
@@ -179,7 +183,7 @@ function startsc(){
 
                 // Replace with your app's client ID, redirect URI and desired scopes
                 let clientId = '7bf8e705b8784dc093df8333cc8fea87';
-                let redirectUri = 'http://www.cs.unc.edu/Courses/comp426-f18/users/iankdew/FP/test.html';
+                let redirectUri = 'https://aenand15.github.io/Travelapp/';
                 let scopes = [
                 'playlist-modify-public user-read-private user-read-birthdate'];
 
@@ -297,12 +301,11 @@ var buildGateInterface = function(){
         let s = 'pic' + i
         let z = 'slide'+i
         let city = names[i-1]
-        let url = "https://source.unsplash.com/800x400/?" + city + "?sig=" + i
-        
+        let url = "https://source.unsplash.com/800x400/?" + city +"?sig=" + i
         fetch(url).then(function(response) {
             bar.append("<div class = 'slide' id = " + z  + 
             "><img alt = 'testing' id = " + s + " src = " +response.url+
-            " ><span>" + city + "</span><button class = 'fly' onclick = 'buildFlightInterface(" + z + ")'>Fly Here</button></div>")
+            " ><span>" + city + "</span><button class = 'fly' onclick = 'buildFlightInterface(" + i + ")'>Fly Here</button></div>")
       });
     }
     container.append(bar)
@@ -311,6 +314,16 @@ var buildGateInterface = function(){
     body.append(container)
 }
 var buildFlightInterface = function(id){
-    let city = $(id).find('span').text()
-    console.log(city)
+    let acity = names[i-1]
+    let dcity = getAirport(names[i+4])
+    let container = $("<div class = container'></div>")
+    container.append("<h1>Now Leaving " + dcity + " and Heading to "  + acity + "</h1>")
+    let body = $('body')
+    body.empty()
+    body.append(container)
+    startsc(names[i-1])
+}
+
+var buildCreateInterface = function(){
+    //form to build flight then launches
 }
