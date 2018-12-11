@@ -157,15 +157,6 @@ function startsc(cityname){
     query = cityname
     alert(window.localStorage.getItem('token'))
     if(window.localStorage.getItem('token')== null){
-                const hash = window.location.hash.substring(1).split('&').reduce(function (initial, item) {
-                    if (item) {
-                        var parts = item.split('=');
-                        initial[parts[0]] = decodeURIComponent(parts[1]);
-                    }
-                    return initial;
-                    }, {});
-
-                window.location.hash = '';
                 // Set token
                 let authEndpoint = 'https://accounts.spotify.com/authorize';
 
@@ -177,6 +168,15 @@ function startsc(cityname){
 
                 // If there is no token, redirect to Spotify authorization
                 window.location = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=playlist-modify-public user-read-private user-read-birthdate&response_type=token&show_dialog=true`;
+                const hash = window.location.hash.substring(1).split('&').reduce(function (initial, item) {
+                    if (item) {
+                        var parts = item.split('=');
+                        initial[parts[0]] = decodeURIComponent(parts[1]);
+                    }
+                    return initial;
+                    }, {});
+
+                window.location.hash = '';
                 window.localStorage.setItem('token', hash.access_token)
                 alert(window.localStorage.getItem('token'))
                 }
