@@ -36,6 +36,7 @@ $(function (){
 
 $(function(){
 $('#refairports').on('keyup change', function () {
+    alert('keyup')
     var search = $(this).val();
     $('#listWrapper li').each(function () {
         var val = $(this).text();
