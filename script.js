@@ -172,7 +172,6 @@ function startsc(){
                 window.localStorage.setItem('token', hash.access_token)
                 }
                 let _token = window.localStorage.getItem('token')
-                console.log(_token)
                 let authEndpoint = 'https://accounts.spotify.com/authorize';
 
                 // Replace with your app's client ID, redirect URI and desired scopes
@@ -214,7 +213,6 @@ function startsc(){
                     beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer '+_token);},
                     success: (response) =>{
                         user = response.id;
-                        console.log(_token);
                         createPlayList(query, serp,serp2, _token, user);
 
                     }
