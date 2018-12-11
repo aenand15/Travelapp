@@ -55,7 +55,7 @@
     background-color: lightgreen;
 }
   
-h1, h2{
+h1, h2, h3{
     text-align: center
 }
 
@@ -72,4 +72,7 @@ img{
     margin-left: 0;
     float: left;
     margin-top: 20%;
+}
+#play{
+    float: right;
 }
