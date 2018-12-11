@@ -152,13 +152,12 @@ function createFlight(){
         }
     })
 }
-
+var _token;
 function startsc(){
     var query = '';
     var serp =[], serp2=[];
     var user ='';
     query = names[0]
-        
                 const hash = window.location.hash.substring(1).split('&').reduce(function (initial, item) {
                     if (item) {
                         var parts = item.split('=');
@@ -168,10 +167,10 @@ function startsc(){
                     }, {});
 
                 window.location.hash = '';
-
+                console.log(_token)
                 // Set token
-                let _token = hash.access_token;
-
+                _token = hash.access_token;
+                console.log(_token)
                 let authEndpoint = 'https://accounts.spotify.com/authorize';
 
                 // Replace with your app's client ID, redirect URI and desired scopes
@@ -213,7 +212,7 @@ function startsc(){
                     beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer '+_token);},
                     success: (response) =>{
                         user = response.id;
-                        //console.log(_token);
+                        console.log(_token);
                         createPlayList(query, serp,serp2, _token, user);
 
                     }
