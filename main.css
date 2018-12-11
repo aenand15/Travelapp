@@ -88,5 +88,5 @@ img{
 }
 form{
     display: inline-block;
-    position: relative;
+    float: left;
 }
