@@ -364,5 +364,4 @@ var startNew = function(){
     alert('Creating your flight!')
     sleep(1000)
     buildFlightInterface(-1)
-    startsc(names.pop())
 }
