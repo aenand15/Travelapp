@@ -176,7 +176,7 @@ function startsc(cityname){
                     }, {});
 
                 window.location.hash = '';
-                sessionStorage.setItem('token', hash.access_token)
+                sessionStorage.setItem("token", hash.access_token)
                 }
                 let _token = sessionStorage.getItem('token')
                 
