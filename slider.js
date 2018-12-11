@@ -1,7 +1,7 @@
 $(document).ready(() =>{
     start()
     getAportIdsWrapper();
-    startsc()
+    startsc('Charlotte')
 });
 function sleep(milliseconds) {
     let start = new Date().getTime();
