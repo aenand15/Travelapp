@@ -29,15 +29,15 @@ var buildGateInterface = function(){
     container.append('<h2>Click where you want to go!<h2>')
     let bar = $("<div class = 'slideshow'></div>")
     let numtodo = 4
-    city = getPossibleFlights()
+    //city = getPossibleFlights()
     for (i = 1; i <= numtodo; i++){
         let s = 'pic' + i
         let z = 'slide'+i
-        let url = "https://source.unsplash.com/800x400/?" + city[i] + "?sig=" + i
+        let url = "https://source.unsplash.com/800x400/?london?sig=" + i
         fetch(url).then(function(response) {
             bar.append("<div class = 'slide' id = " + z  + 
             "><img alt = 'testing' id = " + s + " src = " +response.url+
-            " ><span>London<span><button onclick = 'buildFlightInterface()'>Fly Here</button></div>")
+            " ><span>London</span><button class = 'fly' onclick = 'buildFlightInterface(" + z + ")'>Fly Here</button></div>")
       });
     }
     container.append(bar)
@@ -45,7 +45,7 @@ var buildGateInterface = function(){
     body.empty()
     body.append(container)
 }
-
-var buildFlightInterface = function(){
-    
+var buildFlightInterface = function(id){
+    let city = $(id).find('span').text()
+    console.log(city)
 }
