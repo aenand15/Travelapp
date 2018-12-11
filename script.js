@@ -352,11 +352,10 @@ var buildCreateInterface = function(){
         l.append($('<li class = "airport">' + airports[i] + '</li>'))
     }
     let container = $('<div class = container><h1>Create a flight or go back to the terminal</h1></div>')
-    container.append($('<form action = "javascript:createFlight()">Flight Number: <br><input type="text" id="flightNum" name="flightNum" placeholder="XX XXXX" required><br>Departure: <br><input type="text" id="departureTime" name="departureTime" placeholder="24 Hour" required><br>Arrival:<br><input type="text" id="arrivalTime" name="arrivalTime" placeholder="24 Hour" required><br>Depart from:<br><input type="text" id="dPort" name="dPort"><br>Arrive at:<br><input type="text" id="aPort" name="aPort"><br><br><input type = "submit" value = "submit"></form>'))
+    container.append($('<form action = "javascript:createFlight()">Flight Number: <br><input type="text" id="flightNum" name="flightNum" placeholder="XX XXXX" required><br>Departure: <br><input type="text" id="departureTime" name="departureTime" placeholder="24 Hour" required><br>Arrival:<br><input type="text" id="arrivalTime" name="arrivalTime" placeholder="24 Hour" required><br>Depart from:<br><input type="text" id="dPort" name="dPort"><br>Arrive at:<br><input type="text" id="aPort" name="aPort"><br><br><input type = "submit" value = "submit"><button class="home">Go back to terminal</button></form>'))
     let x = $('<div id = "listWrapper"></div>')
     x.append(l)
     container.append(x)
-    container.append('<button class="home">Go back to terminal</button>')
     body.empty()
     body.append(container)
     //form to build flight then launches
