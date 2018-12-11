@@ -157,7 +157,6 @@ function startsc(cityname){
     var serp =[], serp2=[];
     var user ='';
     query = cityname
-    alert(window.localStorage.getItem('token'))
     if(window.localStorage.getItem('token')== null){
                 const hash = window.location.hash.substring(1).split('&').reduce(function (initial, item) {
                     if (item) {
@@ -316,6 +315,20 @@ var buildFlightInterface = function(l){
     let dcity = names[num+4]
     let container = $("<div class = container'></div>")
     container.append("<h1>Now Leaving " + dcity + " and Heading to "  + acity + "</h1>")
+    let bar = $("<div class = 'slideshow'></div>")
+  let numtodo = 4
+    for (i = 1; i <= numtodo; i++){
+        let s = 'pic' + i
+        let z = 'slide'+i
+        let city = acity
+        let url = "https://source.unsplash.com/800x300/?" + city +"?sig=" + i
+        fetch(url).then(function(response) {
+            bar.append("<div class = 'slide' id = " + z  + 
+            "><h3>" + city + "</h3><img alt = 'testing' id = " + s + " src = " +response.url+
+            " >")
+      });
+    }
+    container.append(bar)
     let body = $('body')
     body.empty()
     body.append(container)
