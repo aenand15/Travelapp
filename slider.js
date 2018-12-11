@@ -34,6 +34,7 @@ $(function (){
     })
 })
 
+$(function(){
 $('#refairports').on('keyup change', function () {
     var search = $(this).val();
     $('#listWrapper li').each(function () {
@@ -44,3 +45,4 @@ $('#refairports').on('keyup change', function () {
         );
     });
 });
+})
