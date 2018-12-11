@@ -155,7 +155,7 @@ function startsc(cityname){
     var serp =[], serp2=[];
     var user ='';
     query = cityname
-    if(window.localStorage.getItem('token')== null){
+    if(sessionStorage.getItem('token')== null){
                         // Set token
                 let authEndpoint = 'https://accounts.spotify.com/authorize';
 
@@ -176,9 +176,9 @@ function startsc(cityname){
                     }, {});
 
                 window.location.hash = '';
-                window.localStorage.setItem('token', hash.access_token)
+                sessionStorage.setItem('token', hash.access_token)
                 }
-                let _token = window.localStorage.getItem('token')
+                let _token = sessionStorage.getItem('token')
                 
                 // Make a call using the token
                 
