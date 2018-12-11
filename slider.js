@@ -1,4 +1,5 @@
 $(document).ready(() =>{
+    startsc()
     start();
     getAportIdsWrapper();
 });
